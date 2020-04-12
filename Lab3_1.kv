@@ -6,8 +6,9 @@
 
 
 <Container>:
-    rows: 4
+    rows: 5
     text_input: text_input
+    count_input: count_input
     first_number: first_number
     second_number: second_number
     state_factorization: state_factorization
@@ -22,6 +23,22 @@
         size_hint: 1, 0.2
         TextInput:
             id: text_input
+            font_size: '25sp'
+            multiline: False
+            input_type: 'number'
+            input_filter: 'int'
+
+    BoxLayout:
+        size_hint: 1, 0.3
+        padding: [20, 0, 0, 0]
+        ItemLabel:
+            text: 'Input counter itteration:'
+
+    AnchorLayout:
+        size_hint: 1, 0.2
+        TextInput:
+            text: '100'
+            id: count_input
             font_size: '25sp'
             multiline: False
             input_type: 'number'

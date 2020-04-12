@@ -26,7 +26,7 @@ def prime_number(n):
     return a == n
 
 
-def ferma_factorize(n):
+def ferma_factorize(n, counter=100):
 
     ''' Функція факторизації Ферма та обробка всіх випадків при введені числа '''
 
@@ -43,10 +43,12 @@ def ferma_factorize(n):
         return int(n ** 0.5), int(n ** 0.5), 'Операція успішна!'
 
     x = int(n ** 0.5) + 1
-
+    c = 0
     while not is_square(x * x - n):
         x += 1
-
+        c += 1
+        if c > counter:
+            return None, None, 'Помилка! \nЗадачу не обраховано'
     y = int((x * x - n) ** 0.5)
     a, b = x - y, x + y
     return a, b, 'Операція успішна!'
@@ -62,9 +64,11 @@ class Container(GridLayout):
         ''' Функція ОБЧИСЛЕННЯ факторизації Ферма та обробка виключення при вводі букв або символів '''
 
         try:
+
             inp_number = int(self.text_input.text)
-            a, b, c = ferma_factorize(inp_number)
+            a, b, c = ferma_factorize(inp_number, int(self.count_input.text))
             self.first_number.text, self.second_number.text, self.state_factorization.text = str(a), str(b), c
+
         except:
             self.state_factorization.text = 'Некоректний ввід'
 
